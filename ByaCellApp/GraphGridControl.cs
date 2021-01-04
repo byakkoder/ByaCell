@@ -223,11 +223,8 @@ namespace ByaCellApp
 
             using (Graphics graphics = PanGrid.CreateGraphics())
             {
-                int diffX = e.X % CellSize;
-                int x = diffX > 0 ? e.X - diffX : e.X;
-
-                int diffY = e.Y % CellSize;
-                int y = diffY > 0 ? e.Y - diffY : e.Y;
+                int x = GetGridCoord(e.X, GridSize.Width);
+                int y = GetGridCoord(e.Y, GridSize.Height);
 
                 Brush cellBrush = e.Button == MouseButtons.Left ? Brushes.GreenYellow : Brushes.Black;
 
@@ -239,6 +236,17 @@ namespace ByaCellApp
 
                 OnRender?.Invoke(_cells.Count);
             }
+        }
+
+        private int GetGridCoord(int coord, int maxCoord)
+        {
+            int maxGridCoord = (maxCoord - 1) * CellSize;
+            int modCoord = coord % CellSize;
+            int gridCoord = modCoord > 0 ? coord - modCoord : coord;
+
+            gridCoord = gridCoord < 0 ? 0 : (gridCoord > maxGridCoord ? maxGridCoord : gridCoord);
+
+            return gridCoord;
         }
 
         private void UpdateLivingCellsList(MouseEventArgs e, int x, int y)
