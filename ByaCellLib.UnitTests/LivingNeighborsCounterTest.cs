@@ -1,4 +1,4 @@
-/************************************************************************
+﻿/************************************************************************
  ByaCell - Cellular Automata App
  Copyright (C) 2021 John García
 
@@ -20,25 +20,21 @@
 
 using Entities;
 using Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Drawing;
 
-namespace ByaCellLib.Test
+namespace ByaCellLib.UnitTests
 {
-    [TestClass]
     public class LivingNeighborsCounterTest
     {
         #region Dependencies
-        
-        private ILivingNeighborsCounter _livingNeighborsCounter; 
+
+        private ILivingNeighborsCounter _livingNeighborsCounter;
 
         #endregion
 
-        #region Test Initialization and Clean Up
+        #region Test Initialization
 
-        [TestInitialize]
-        public void Initialize()
+        public LivingNeighborsCounterTest()
         {
             _livingNeighborsCounter = new LivingNeighborsCounter();
         }
@@ -46,12 +42,12 @@ namespace ByaCellLib.Test
         #endregion
 
         #region Test Methods
-        
-        [TestMethod]
+
+        [Fact]
         public void CountTest()
         {
             #region Arrange
-            
+
             Cell cellToEval = new Cell() { Location = new Point(1, 1) };
 
             Cell[,] sourceGeneration = new Cell[3, 3]
@@ -64,23 +60,23 @@ namespace ByaCellLib.Test
             #endregion
 
             #region Act
-            
+
             int livingNeighborsCount = _livingNeighborsCounter.Count(sourceGeneration, cellToEval);
 
             #endregion
 
             #region Assert
-            
-            Assert.AreEqual(3, livingNeighborsCount); 
+
+            Assert.Equal(3, livingNeighborsCount);
 
             #endregion
         }
 
-        [TestMethod]
+        [Fact]
         public void AvoidSameTest()
         {
             #region Arrange
-            
+
             Cell cellToEval = new Cell() { Location = new Point(1, 1), IsAlive = true };
 
             Cell[,] sourceGeneration = new Cell[3, 3]
@@ -93,23 +89,23 @@ namespace ByaCellLib.Test
             #endregion
 
             #region Act
-            
+
             int livingNeighborsCount = _livingNeighborsCounter.Count(sourceGeneration, cellToEval);
 
             #endregion
 
             #region Assert
-            
-            Assert.AreEqual(8, livingNeighborsCount); 
+
+            Assert.Equal(8, livingNeighborsCount);
 
             #endregion
         }
 
-        [TestMethod]
+        [Fact]
         public void LowerLimitTest()
         {
             #region Arrange
-            
+
             Cell cellToEval = new Cell() { Location = new Point(0, 0), IsAlive = true };
 
             Cell[,] sourceGeneration = new Cell[3, 3]
@@ -122,23 +118,23 @@ namespace ByaCellLib.Test
             #endregion
 
             #region Act
-            
+
             int livingNeighborsCount = _livingNeighborsCounter.Count(sourceGeneration, cellToEval);
 
             #endregion
 
             #region Assert
-            
-            Assert.AreEqual(3, livingNeighborsCount); 
+
+            Assert.Equal(3, livingNeighborsCount);
 
             #endregion
         }
 
-        [TestMethod]
+        [Fact]
         public void UpperLimitTest()
         {
             #region Arrange
-            
+
             Cell cellToEval = new Cell() { Location = new Point(2, 2), IsAlive = true };
 
             Cell[,] sourceGeneration = new Cell[3, 3]
@@ -151,33 +147,33 @@ namespace ByaCellLib.Test
             #endregion
 
             #region Act
-            
+
             int livingNeighborsCount = _livingNeighborsCounter.Count(sourceGeneration, cellToEval);
 
             #endregion
 
             #region Assert
-            
-            Assert.AreEqual(3, livingNeighborsCount); 
+
+            Assert.Equal(3, livingNeighborsCount);
 
             #endregion
         }
 
-        [TestMethod]
+        [Fact]
         public void MinimumSizeTest()
         {
             #region Arrange
-            
+
             Cell[,] sourceGeneration = new Cell[2, 2];
 
             #endregion
 
             #region Act and Assert
-            
-            Assert.ThrowsException<ArgumentException>(() => _livingNeighborsCounter.Count(sourceGeneration, sourceGeneration[0, 0])); 
+
+            Assert.Throws<ArgumentException>(() => _livingNeighborsCounter.Count(sourceGeneration, sourceGeneration[0, 0]));
 
             #endregion
-        } 
+        }
 
         #endregion
     }

@@ -1,4 +1,4 @@
-/************************************************************************
+﻿/************************************************************************
  ByaCell - Cellular Automata App
  Copyright (C) 2021 John García
 
@@ -20,26 +20,22 @@
 
 using Entities;
 using Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 
-namespace ByaCellLib.Test
+namespace ByaCellLib.UnitTests
 {
-    [TestClass]
     public class GenerationRunnerTest
     {
         #region Dependencies
-        
+
         private IGenerationRunner _generationRunner;
-        private Mock<ILifeValidator> _lifeValidator; 
+        private Mock<ILifeValidator> _lifeValidator;
 
         #endregion
 
-        #region Test Initialization and Clean Up
+        #region Test Initialization
 
-        [TestInitialize]
-        public void Initialize()
+        public GenerationRunnerTest()
         {
             _lifeValidator = new Mock<ILifeValidator>();
 
@@ -49,12 +45,12 @@ namespace ByaCellLib.Test
         #endregion
 
         #region Test Methods
-        
-        [TestMethod]
+
+        [Fact]
         public void RunTest()
         {
             #region Arrange
-            
+
             Cell[,] sourceGeneration = new Cell[3, 3]
             {
                 { new Cell(), new Cell(), new Cell() },
@@ -67,28 +63,28 @@ namespace ByaCellLib.Test
             #endregion
 
             #region Act
-            
+
             Cell[,] newGeneration = _generationRunner.Run(sourceGeneration);
 
             #endregion
 
             #region Assert
-            
-            Assert.AreEqual(9, newGeneration.Length);
-            Assert.AreEqual(3, newGeneration.GetLength(0));
-            Assert.AreEqual(3, newGeneration.GetLength(1));
-            Assert.AreNotSame(newGeneration, sourceGeneration);
+
+            Assert.Equal(9, newGeneration.Length);
+            Assert.Equal(3, newGeneration.GetLength(0));
+            Assert.Equal(3, newGeneration.GetLength(1));
+            Assert.NotSame(newGeneration, sourceGeneration);
             _lifeValidator.Verify(x => x.IsAlive(sourceGeneration, It.IsAny<Cell>()), Times.Exactly(9));
-            Assert.AreEqual(true, newGeneration[1, 1].IsAlive); 
+            Assert.True(newGeneration[1, 1].IsAlive);
 
             #endregion
         }
 
-        [TestMethod]
+        [Fact]
         public void WrongSizeTest()
         {
             #region Arrange
-            
+
             Cell[,] sourceGeneration = new Cell[2, 2]
             {
                 { new Cell(), new Cell() },
@@ -98,11 +94,11 @@ namespace ByaCellLib.Test
             #endregion
 
             #region Act and Assert
-            
-            Assert.ThrowsException<ArgumentException>(() => _generationRunner.Run(sourceGeneration)); 
+
+            Assert.Throws<ArgumentException>(() => _generationRunner.Run(sourceGeneration));
 
             #endregion
-        } 
+        }
 
         #endregion
     }

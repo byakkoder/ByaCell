@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36109.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{4FB12F6A-F92D-4ECB-848C-2FAC31B2C8E6}"
 EndProject
@@ -13,14 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrapper", "Bootstrapper\Bootstrapper.csproj", "{FB5934BC-44A8-491F-A964-8856B449659B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByaCellLib.Test", "ByaCellLib.Test\ByaCellLib.Test.csproj", "{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D1355433-19CA-4F35-9D9A-E5E20EF7F8B8}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
 		README.md = README.md
 		THIRD-PARTY-NOTICES.txt = THIRD-PARTY-NOTICES.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByaCellLib.UnitTests", "ByaCellLib.UnitTests\ByaCellLib.UnitTests.csproj", "{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,18 +92,18 @@ Global
 		{FB5934BC-44A8-491F-A964-8856B449659B}.Release|x64.Build.0 = Release|Any CPU
 		{FB5934BC-44A8-491F-A964-8856B449659B}.Release|x86.ActiveCfg = Release|Any CPU
 		{FB5934BC-44A8-491F-A964-8856B449659B}.Release|x86.Build.0 = Release|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Debug|x64.Build.0 = Debug|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Debug|x86.Build.0 = Debug|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Release|x64.ActiveCfg = Release|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Release|x64.Build.0 = Release|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Release|x86.ActiveCfg = Release|Any CPU
-		{6ADF110B-5828-4FFD-AC8C-B56A26D29E80}.Release|x86.Build.0 = Release|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Debug|x64.Build.0 = Debug|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Debug|x86.Build.0 = Debug|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Release|x64.ActiveCfg = Release|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Release|x64.Build.0 = Release|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Release|x86.ActiveCfg = Release|Any CPU
+		{539DADE4-FAAE-4794-B8E5-D506CE3D9E8B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

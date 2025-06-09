@@ -1,4 +1,4 @@
-/************************************************************************
+﻿/************************************************************************
  ByaCell - Cellular Automata App
  Copyright (C) 2021 John García
 
@@ -20,25 +20,21 @@
 
 using Entities;
 using Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Drawing;
 
-namespace ByaCellLib.Test
+namespace ByaCellLib.UnitTests
 {
-    [TestClass]
     public class BaseWorldGeneratorTest
     {
         #region Dependencies
-        
-        private IBaseWorldGenerator _baseWorldGenerator; 
+
+        private IBaseWorldGenerator _baseWorldGenerator;
 
         #endregion
 
-        #region Test Initialization and Clean Up
+        #region Test Initialization
 
-        [TestInitialize]
-        public void Initialize()
+        public BaseWorldGeneratorTest()
         {
             _baseWorldGenerator = new BaseWorldGenerator();
         }
@@ -46,8 +42,8 @@ namespace ByaCellLib.Test
         #endregion
 
         #region Test Methods
-        
-        [TestMethod]
+
+        [Fact]
         public void GenerateTest()
         {
             #region Arrange
@@ -64,15 +60,15 @@ namespace ByaCellLib.Test
 
             #region Assert
 
-            Assert.AreEqual(300, world.GetLength(0));
-            Assert.AreEqual(200, world.GetLength(1));
-            Assert.AreEqual(60000, world.Length);
-            Assert.AreEqual(new Point(50, 20), world[50, 20].Location);
+            Assert.Equal(300, world.GetLength(0));
+            Assert.Equal(200, world.GetLength(1));
+            Assert.Equal(60000, world.Length);
+            Assert.Equal(new Point(50, 20), world[50, 20].Location);
 
             #endregion
         }
 
-        [TestMethod]
+        [Fact]
         public void ZeroSizeTest()
         {
             #region Arrange
@@ -83,12 +79,12 @@ namespace ByaCellLib.Test
 
             #region Act and Assert
 
-            Assert.ThrowsException<ArgumentException>(() => _baseWorldGenerator.Generate(worldSize));
+            Assert.Throws<ArgumentException>(() => _baseWorldGenerator.Generate(worldSize));
 
             #endregion
         }
 
-        [TestMethod]
+        [Fact]
         public void WrongSizeTest()
         {
             #region Arrange
@@ -99,10 +95,10 @@ namespace ByaCellLib.Test
 
             #region Act and Assert
 
-            Assert.ThrowsException<ArgumentException>(() => _baseWorldGenerator.Generate(worldSize));
+            Assert.Throws<ArgumentException>(() => _baseWorldGenerator.Generate(worldSize));
 
             #endregion
-        } 
+        }
 
         #endregion
     }

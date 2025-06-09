@@ -1,4 +1,4 @@
-/************************************************************************
+﻿/************************************************************************
  ByaCell - Cellular Automata App
  Copyright (C) 2021 John García
 
@@ -20,25 +20,22 @@
 
 using Entities;
 using Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace ByaCellLib.Test
+namespace ByaCellLib.UnitTests
 {
-    [TestClass]
     public class LifeValidatorTest
     {
         #region Dependencies
-        
+
         private ILifeValidator _lifeValidator;
-        private Mock<ILivingNeighborsCounter> _livingNeighborsCounter; 
+        private Mock<ILivingNeighborsCounter> _livingNeighborsCounter;
 
         #endregion
 
-        #region Test Initialization and Clean Up
+        #region Test Initialization
 
-        [TestInitialize]
-        public void Initialize()
+        public LifeValidatorTest()
         {
             _livingNeighborsCounter = new Mock<ILivingNeighborsCounter>();
 
@@ -49,7 +46,7 @@ namespace ByaCellLib.Test
 
         #region Test Methods
 
-        [TestMethod]
+        [Fact]
         public void ReproductionTest()
         {
             #region Arrange
@@ -69,19 +66,19 @@ namespace ByaCellLib.Test
 
             #region Assert
 
-            Assert.IsTrue(alive, "The cell is dead!");
+            Assert.True(alive, "The cell is dead!");
 
             #endregion
         }
 
-        [TestMethod]
-        [DataRow(1, DisplayName = "One Neighbor")]
-        [DataRow(2, DisplayName = "Two Neighbors")]
-        [DataRow(4, DisplayName = "Four Neighbors")]
-        [DataRow(5, DisplayName = "Five Neighbors")]
-        [DataRow(6, DisplayName = "Six Neighbors")]
-        [DataRow(7, DisplayName = "Seven Neighbors")]
-        [DataRow(8, DisplayName = "Eight Neighbors")]
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
         public void NoReproductionTest(int neighbors)
         {
             #region Arrange
@@ -101,14 +98,14 @@ namespace ByaCellLib.Test
 
             #region Assert
 
-            Assert.IsFalse(alive, "The cell is dead!");
+            Assert.False(alive, "The cell is dead!");
 
             #endregion
         }
 
-        [TestMethod]
-        [DataRow(2, DisplayName = "Two Neighbors")]
-        [DataRow(3, DisplayName = "Three Neighbors")]
+        [Theory]
+        [InlineData(2)]
+        [InlineData(3)]
         public void StillAliveTest(int neighborsCount)
         {
             #region Arrange
@@ -128,14 +125,14 @@ namespace ByaCellLib.Test
 
             #region Assert
 
-            Assert.IsTrue(alive, "The cell is dead!");
+            Assert.True(alive, "The cell is dead!");
 
             #endregion
         }
 
-        [TestMethod]
-        [DataRow(0, DisplayName = "No Neighbors")]
-        [DataRow(1, DisplayName = "One Neighbor")]
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
         public void UnderpopulationTest(int neighborsCount)
         {
             #region Arrange
@@ -155,17 +152,17 @@ namespace ByaCellLib.Test
 
             #region Assert
 
-            Assert.IsFalse(alive, "The cell is alive!");
+            Assert.False(alive, "The cell is alive!");
 
             #endregion
         }
 
-        [TestMethod]
-        [DataRow(4, DisplayName = "Four Neighbors")]
-        [DataRow(5, DisplayName = "Five Neighbors")]
-        [DataRow(6, DisplayName = "Six Neighbors")]
-        [DataRow(7, DisplayName = "Seven Neighbors")]
-        [DataRow(8, DisplayName = "Eight Neighbors")]
+        [Theory]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
         public void OverpopulationTest(int neighborsCount)
         {
             #region Arrange
@@ -185,7 +182,7 @@ namespace ByaCellLib.Test
 
             #region Assert
 
-            Assert.IsFalse(alive, "The cell is alive!");
+            Assert.False(alive, "The cell is alive!");
 
             #endregion
         }
