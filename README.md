@@ -38,8 +38,8 @@ see the THIRD-PARTY-NOTICES.txt file.
 
 ## Dependencies
 
-* .NET Framework 4.7.2
-* Microsoft Windows OS compatible with .NET Framework 4.7.2
+* .NET 9
+* Microsoft Windows OS compatible with .NET 9
 
 
 ## How to start with ByaCell
