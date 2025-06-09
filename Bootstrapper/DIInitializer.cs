@@ -20,11 +20,14 @@
 
 using ByaCellLib;
 using Interfaces;
-using Unity;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
 
 namespace Bootstrapper
 {
-    public static class UnityDIInitializer
+    public static class DIInitializer
     {
         #region Fields
 
@@ -32,21 +35,35 @@ namespace Bootstrapper
 
         #endregion
 
+        #region Properties
+
+        public static IServiceProvider ServiceProvider { get; private set; }
+
+        #endregion
+
         #region Public Methods
-        
-        public static void Initialize()
+
+        public static void Initialize(List<Type> additionalTransientDependencies)
         {
             if (_isInitialized)
             {
                 return;
             }
 
-            IUnityContainer unityContainer = DIContainerManager.GetContainer();
+            var builder = Host.CreateDefaultBuilder();
 
-            unityContainer.RegisterType<IBaseWorldGenerator, BaseWorldGenerator>();
-            unityContainer.RegisterType<IGenerationRunner, GenerationRunner>();
-            unityContainer.RegisterType<ILifeValidator, LifeValidator>();
-            unityContainer.RegisterType<ILivingNeighborsCounter, LivingNeighborsCounter>();
+            builder.ConfigureServices(services => services
+                .AddScoped<IBaseWorldGenerator, BaseWorldGenerator>()
+                .AddScoped<IGenerationRunner, GenerationRunner>()
+                .AddScoped<ILifeValidator, LifeValidator>()
+                .AddScoped<ILivingNeighborsCounter, LivingNeighborsCounter>());
+
+            additionalTransientDependencies.ForEach(dependencyType =>
+                builder.ConfigureServices(services => services.AddTransient(dependencyType)));
+
+            var host = builder.Build();
+
+            ServiceProvider = host.Services;
 
             _isInitialized = true;
         } 

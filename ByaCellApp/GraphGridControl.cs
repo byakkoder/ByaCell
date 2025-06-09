@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -54,6 +55,7 @@ namespace ByaCellApp
 
         #region Properties
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Size GridSize
         {
             get
@@ -67,6 +69,7 @@ namespace ByaCellApp
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DrawIsLocked 
         {
             get

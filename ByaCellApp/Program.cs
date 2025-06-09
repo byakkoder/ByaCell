@@ -19,6 +19,7 @@
 ************************************************************************/
 
 using Bootstrapper;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,11 +36,13 @@ namespace ByaCellApp
         [STAThread]
         static void Main()
         {
-            UnityDIInitializer.Initialize();
+            List<Type> transientDependencies = new List<Type>();
+            transientDependencies.Add(typeof(FrmMain));
+            DIInitializer.Initialize(transientDependencies);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            Application.Run(DIInitializer.ServiceProvider.GetRequiredService<FrmMain>());
         }
     }
 }

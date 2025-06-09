@@ -52,8 +52,13 @@ namespace ByaCellApp
 
         #region Constructor
         
-        public FrmMain()
+        public FrmMain(
+            IGenerationRunner generationRunner,
+            IBaseWorldGenerator baseWorldGenerator)
         {
+            _generationRunner = generationRunner;
+            _baseWorldGenerator = baseWorldGenerator;
+
             InitializeComponent();
         }
 
@@ -63,8 +68,6 @@ namespace ByaCellApp
         
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            _generationRunner = DIContainerManager.GetContainer().Resolve<IGenerationRunner>();
-            _baseWorldGenerator = DIContainerManager.GetContainer().Resolve<IBaseWorldGenerator>();
             _populationMapper = new PopulationMapper();
 
             GdcWorld.OnCellPainted += GdcWorld_OnCellPainted;
